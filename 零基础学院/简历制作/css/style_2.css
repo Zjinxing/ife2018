@@ -1,0 +1,25 @@
+.wrapper{
+    width: 90%;
+    height: 750px;
+    max-width: 800px;
+    padding: 10px
+}
+.title{
+    float: left;
+    width: 20%;
+    height: 750px;
+    overflow: hidden;
+    color: #fff;
+    text-align: center;
+    background: #62a8f6;
+}
+.content{
+    float: left;
+    margin-left: 10px;
+}
+span{
+    margin: 0 25px 0 8px
+}
+p{
+    margin-top: 2px;
+}

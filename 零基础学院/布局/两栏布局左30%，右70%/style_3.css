@@ -1,0 +1,16 @@
+body,html,.wrapper{
+    height: 100%;
+    font-size: 0;
+}
+.left{
+    display: inline-block;
+    width: 30%;
+    height: 100%;
+    background: salmon;
+}
+.right{
+    display: inline-block;
+    width: 70%;
+    height: 100%;
+    background: aqua;
+}

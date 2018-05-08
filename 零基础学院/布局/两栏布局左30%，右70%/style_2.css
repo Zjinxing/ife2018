@@ -1,0 +1,21 @@
+html,body{
+    height: 100%;
+}
+.wrapper{
+    position: relative;
+    height: 100%;
+}
+.left{
+    position: absolute;
+    width: 30%;
+    height: 100%;
+    left: 0;
+    background: skyblue;
+}
+.right{
+    position: absolute;
+    width: 70%;
+    height: 100%;
+    right: 0;
+    background: hotpink;
+}

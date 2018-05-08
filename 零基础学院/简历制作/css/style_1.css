@@ -1,0 +1,12 @@
+.wrapper{
+    width: 90%;
+    max-width: 800px;
+    border: solid 1px #f4f4f4;
+    padding: 10px
+}
+span{
+    margin: 0 25px 0 8px
+}
+p{
+    margin-top: 2px;
+}

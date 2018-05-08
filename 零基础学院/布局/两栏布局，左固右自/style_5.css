@@ -1,0 +1,18 @@
+body,html,.wrapper{
+    height: 100%;
+    font-size: 0;
+}
+.left{
+    display: inline-block;
+    width: 200px;
+    height: 100%;
+    font-size: 16px;
+    background: khaki;
+}
+.right{
+    display: inline-block;
+    width: calc(100% - 200px);
+    height: 100%;
+    font-size: 16px;
+    background: lawngreen;
+}

@@ -1,0 +1,26 @@
+body,html {
+    height: 100%;
+}
+.wrapper {
+    min-width: 510px;
+    height: 100%;
+    font-size: 0;
+}
+.left, .middle, .right {
+    display: inline-block;
+    height: 100%;
+    font-size: 16px;
+}
+.left {
+    width: 200px;
+    background: crimson;
+}
+.middle {
+    width: 300px;
+    background: burlywood;
+}
+.right {
+    width: calc(100% - 500px);
+    background: darkblue;
+    vertical-align: top;
+}

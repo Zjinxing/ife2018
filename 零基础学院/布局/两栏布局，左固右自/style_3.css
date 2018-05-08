@@ -1,0 +1,25 @@
+/***************************************
+*绝对定位，利用CSS3 calc属性动态计算右侧栏宽度*
+****************************************/
+body,html{
+    height: 100%;
+}
+.wrapper{
+    position: relative;
+    height: 100%;
+}
+.left{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    background: sienna;
+}
+.right{
+    position: absolute;
+    left: 200px;
+    width: calc(100% - 200px); /*CSS3动态计算宽度*/
+    height: 100%;
+    background: royalblue;
+}

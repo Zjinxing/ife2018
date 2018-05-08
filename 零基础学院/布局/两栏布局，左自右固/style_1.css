@@ -1,0 +1,18 @@
+html,body {
+    height: 100%;
+}
+.wrapper{
+    height: 100%;
+    display: flex;
+    font-size: 16px;
+}
+.left {
+    flex: 1;
+    height: 100%;
+    background: #ac53b8;
+}
+.right {
+    width: 200px;
+    height: 100%;
+    background: #5269f6;
+}

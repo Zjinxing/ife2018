@@ -1,0 +1,20 @@
+/******************************
+*flex布局，左侧栏固定，右侧栏自适应*
+*******************************/
+body,html{
+    height: 100%;
+}
+.wrapper{
+    display: flex;
+    height: 100%;
+}
+.left{
+    width: 200px;
+    height: 100%;
+    background: darkcyan;
+}
+.right{
+    flex: 1;
+    height: 100%;
+    background: slateblue;
+}
