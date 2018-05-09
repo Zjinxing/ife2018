@@ -1,4 +1,5 @@
 .wrapper{
+    position: relative;
     width: 80%;
     min-width: 600px;
     max-width: 1200px;
@@ -50,5 +51,12 @@ h2 + div {
     height: 100px;
     padding: 10px;
     vertical-align: top;
+}
+.greeting{
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: rgba(149, 131, 246, 0.8);
+    font-size: 20px;
 }
 

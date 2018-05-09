@@ -1,4 +1,5 @@
 .wrapper{
+    position: relative;
     width: 90%;
     max-width: 800px;
     border: solid 1px #f4f4f4;
@@ -9,4 +10,11 @@ span{
 }
 p{
     margin-top: 2px;
+}
+.greeting{
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: rgba(149, 131, 246, 0.8);
+    font-size: 20px;
 }

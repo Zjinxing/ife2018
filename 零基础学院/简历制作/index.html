@@ -65,6 +65,25 @@
               </div>
           </div>
       </div>
+      <div class="greeting"></div>
   </div>
+  <script>
+      (function() {
+          let grt = document.getElementsByClassName('greeting')[0];
+          let date = new Date();
+          let h = date.getHours();
+          console.log(h);
+          if(h>=6 && h < 12){
+              grt.innerHTML = '上午好,美好的一天开始了'
+          } else if(h >= 12 && h <18) {
+              grt.innerHTML = '下午好，午饭吃过了吗'
+          } else if(h < 6){
+              grt.innerHTML = '凌晨了，还没睡吗？'
+          } else {
+              grt.innerHTML = '晚上好'
+          }
+
+      })()
+  </script>
 </body>
 </html>
