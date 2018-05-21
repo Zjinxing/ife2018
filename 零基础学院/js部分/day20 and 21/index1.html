@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>index1</title>
+</head>
+<body>
+	<input id="name" type="text">    
+	<button id="submit-btn">Submit</button>
+
+	<script type="text/javascript">
+		let btn = document.querySelector('#submit-btn');
+
+		function output() {
+			let value = document.querySelector('#name').value;			
+			console.log(value);
+		}
+		function clear() {
+			let name = document.querySelector('#name');
+			name.value = '';	
+		}
+		btn.onclick = output;
+		document.onkeydown = function(e) {
+			if(e && e.keyCode == 13) {
+				output();
+			}
+			else if(e && e.keyCode == 27) {
+				clear();
+			}
+		}
+	</script>
+</body>
+</html>

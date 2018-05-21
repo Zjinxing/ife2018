@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>index3</title>
+    <style>
+        .palette {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .palette li {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #000;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>            
+    <ul id="ul1" class="palette">
+        <li id="crim" style="background-color:crimson"></li>
+        <li id="bisq" style="background-color:bisque"></li>
+        <li id="blue" style="background-color:blueviolet"></li>
+        <li id="cora" style="background-color:coral"></li>
+        <li id="char" style="background-color:chartreuse"></li>
+        <li id="dark" style="background-color:darkolivegreen"></li>
+        <li id="cyan" style="background-color:cyan"></li>
+        <li id="numb" style="background-color:#194738"></li>        
+    </ul>
+
+    <p class="color-picker"></p>
+
+    <script>
+
+        /********************************************************
+        var list = document.querySelectorAll("li");
+        for (var i = i = 0, len = list.length; i < len; i++) {
+            list[i].onclick = function(e) {
+                var t = e.target;
+                var c = t.style.backgroundColor;
+                var p = document.getElementsByClassName("color-picker")[0]
+                p.innerHTML = c;
+                p.style.color = c;
+
+            }
+        }
+        **********************************************************/
+
+        /*以下运用事件委托实现*/
+
+        let ul1 = document.querySelector('#ul1');
+        let p = document.querySelector('.color-picker');
+
+        ul1.onclick = function(e) {
+            let ev = e || window.event; //兼容IE
+            let target = ev.target || ev.srcElement;  // 兼容IE
+            let c = target.style.backgroundColor;
+
+            switch(target.id){
+                case 'crim':
+                    p.innerHTML = c;
+                    p.style.color = c;
+                    break;
+                case 'bisq':
+                    p.innerHTML = c;
+                    p.style.color = c;
+                    break;
+                case 'blue':
+                    p.innerHTML = c;
+                    p.style.color = c;
+                    break;    
+                case 'cora':
+                    p.innerHTML = c;
+                    p.style.color = c;
+                    break;
+                case 'char':
+                    p.innerHTML = c;
+                    p.style.color = c;
+                    break;
+                case 'dark':
+                    p.innerHTML = c;
+                    p.style.color = c;
+                    break;
+                case 'cyan':
+                    p.innerHTML = c;
+                    p.style.color = c;
+                    break;
+                case 'numb':
+                    p.innerHTML = c;
+                    p.style.color = c;
+                    break;
+            }
+        }
+
+    </script>
+</body>
+</html>

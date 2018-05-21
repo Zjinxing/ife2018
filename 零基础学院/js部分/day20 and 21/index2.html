@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>index2</title>
+    <style>
+        select {
+            display: none;
+        }
+        .show {
+        	display: block;
+        }
+    </style>
+</head>
+<body>            
+    <label>
+        <input id="school" name="status" type="radio">
+        School
+    </label>
+    <label>
+        <input id="company" name="status" type="radio">
+        Company
+    </label>
+
+    <select id="school-select">        
+        <option>北京邮电大学</option>
+        <option>黑龙江大学</option>
+        <option>华中科技大学</option>
+    </select>
+
+    <select id="company-select">        
+        <option>百度</option>
+        <option>爱奇艺</option>        
+    </select>
+
+    <script type="text/javascript">
+    	function selector() {
+    		let sc = document.querySelector('#school');
+    		let scSe = document.querySelector('#school-select');
+    		let co = document.querySelector('#company');
+    		let coSe = document.querySelector('#company-select');
+
+    		sc.onclick = function() {
+                coSe.classList.remove('show');
+                scSe.classList.add('show');
+    		}
+    		co.onclick = function() {
+    			scSe.classList.remove('show');
+    			coSe.classList.add('show');
+    		}
+    	}
+
+    	window.onload = selector;
+    </script>
+</body>
+</html>
