@@ -17,6 +17,7 @@
 	</ul>
 
 	<script type="text/javascript">
+		/*****************利用setInterval实现*****************************
 		let fadeObj = document.querySelector('#fade-obj');
 		let btn = document.querySelector('#fade-btn');
 		let steps = 50;
@@ -54,41 +55,55 @@
 
         btn.onclick = () => (fadeObj.style.opacity == 1)? fadeOut(): fadeIn();		
 
+        **************************************************************************/
 
-        /******以下利用setTimeout实现***********************************************
+
+        /******以下利用setTimeout实现***********************************************/
 
         let fadeObj = document.querySelector('#fade-obj');
         let btn = document.querySelector('#fade-btn');
 
         function fadeOut() {
-            if(fadeObj.style.opacity <= 0) {
-            	clearTimeout(fadeOut);
-            	btn.innerHTML = '淡入';
-            	btn.removeAttribute('disabled');
-            	fadeObj.style.opacity = 0;
-            }else {
-            	fadeObj.style.opacity -= 0.05;
-            	btn.setAttribute('disabled', true);
-        		setTimeout(fadeOut,50);
-            }       
+            let i = 1;  
+        	function setFadeOut() {
+        		if(i <= 0) {
+        			clearTimeout(setFadeOut);
+        			btn.innerHTML = '淡入';
+        			btn.removeAttribute('disabled');
+        			fadeObj.style.opacity = 0;
+        		}else {
+        			i -= 0.05;
+        			fadeObj.style.opacity = i;
+        			btn.setAttribute('disabled', true);
+        			console.log(i)
+        			setTimeout(setFadeOut, 100);
+        		}
+        	}
+        	setFadeOut();       
         	
         }
         function fadeIn() {
-        	if(fadeObj.style.opacity >= 1) {
-            	clearTimeout(fadeIn);
-            	btn.innerHTML = '淡出';
-            	btn.removeAttribute('disabled');
-            	fadeObj.style.opacity = 1;
-            }else {
-            	fadeObj.style.opacity += 0.05;
-            	btn.setAttribute('disabled', true);
-        		setTimeout(fadeIn,50);
-            }    
+        	let i = 0;  
+        	function setFadeIn() {
+        		if(i >= 1) {
+        			clearTimeout(setFadeIn);
+        			btn.innerHTML = '淡出';
+        			btn.removeAttribute('disabled');
+        			fadeObj.style.opacity = 1;
+        		}else {
+        			i += 0.05;
+        			fadeObj.style.opacity = i;
+        			btn.setAttribute('disabled', true);
+        			console.log(i)
+        			setTimeout(setFadeIn, 100);
+        		}
+        	}
+        	setFadeIn();
         }
 
 
         btn.onclick = () => (fadeObj.style.opacity == 1)? fadeOut(): fadeIn();
-        ****************************************************************************/
+        /****************************************************************************/
 
 	</script>
 </body>
