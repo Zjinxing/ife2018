@@ -6,6 +6,8 @@
 </head>
 <body>
 
+	<p>在console中查看各个函数执行后的输出结果</p>
+
 
 <script type="text/javascript">
 	var tree = {
@@ -75,7 +77,7 @@ function findIdByName(name) {
    		}
    })(tree, name)
 }
-
+findIdByName("Lee")
 // 假设id和name均不会重复，根据输入id找到对应的name
 function findNameById(id) {
 	(function(node, id){
@@ -90,28 +92,31 @@ function findNameById(id) {
    		}
    })(tree, id)
 }
+findNameById(3)
 
 // 把这个对象中所有的名字以“前序遍历”的方式全部输出到console中
 function getListWithDLR() {
     (function(node) {
         if(node) {
-        	console.log(node.id);
+        	console.log(node.name);
         	arguments.callee(node.left);
         	arguments.callee(node.right)
         }
     })(tree)
 }
+getListWithDLR()
 
 // 把这个对象中所有的名字以“中序遍历”的方式全部输出到console中
 function getListWithLDR() {
     (function(node) {
     	if(node) {
     		arguments.callee(node.left)
-    		console.log(node.id);
+    		console.log(node.name);
     		arguments.callee(node.right)
     	}
     })(tree)
 }
+getListWithLDR()
 
 // 把这个对象中所有的名字以“后序遍历”的方式全部输出到console中
 function getListWithLRD() {
@@ -119,10 +124,11 @@ function getListWithLRD() {
     	if(node) {
     		arguments.callee(node.left);
     		arguments.callee(node.right);
-    		console.log(node.id)
+    		console.log(node.name)
     	}
     })(tree)
 }
+getListWithLRD()
 
 </script>
 </body>
