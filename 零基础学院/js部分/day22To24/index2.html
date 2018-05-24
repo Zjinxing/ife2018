@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>index2</title>
+</head>
+<body>
+<div>
+    <label>String A:
+        <input id="radio-a" type="radio" checked="true" name="str-obj" value="a">
+    </label>
+    <textarea id="str-a"></textarea>
+    <label>String B:
+        <input id="radio-b" type="radio" name="str-obj" value="b">
+    </label>
+    <textarea id="str-b"></textarea>        
+    <label>Num A：<input id="num-a" type="number" value="0"></label>
+    <label>Num B：<input id="num-b" type="number" value="1"></label>
+</div>
+<div>
+    <button>获取当前选中输入的内容长度</button>
+    <button>当前选中输入中的第3个字符</button>
+    <button>把两个输入框的文字连接在一起输出（concat）</button>
+    <button>输入B中的内容，在输入A的内容中第一次出现的位置（indexOf）</button>
+    <button>输入A中的内容，在输入B的内容中最后一次出现的位置（lastIndexOf）</button>
+    <button>使用slice获取选中输入框内容的部分内容，参数为num-a及num-b</button>
+    <button>当前选中输入框的行数</button>
+    <button>使用substr获取选中输入框内容的子字符串，参数为num-a及num-b</button>
+    <button>把所选输入框中的内容全部转为大写</button>
+    <button>把所选输入框中的内容全部转为小写</button>
+    <button>把所选输入框中内容的半角空格全部去除</button>
+    <button>把所选输入框中内容的a全部替换成另外一个输入框中的内容</button>
+</div>
+<p id="result"></p>
+
+<script type="text/javascript">
+	let rA = document.querySelector("#radio-a");
+	let rB = document.querySelector("#radio-b");
+	let sA = document.querySelector("#str-a");
+	let sB = document.querySelector("#str-b");
+	let nA = document.querySelector("#num-a");
+	let nB = document.querySelector("#num-b");
+	let btns = document.querySelectorAll("button");
+	let rst = document.querySelector("#result");
+
+    btns[0].onclick = function() {
+    	rA.checked? (rst.innerHTML = sA.value.length): (rst.innerHTML = sB.value.length)
+    }
+
+    btns[1].onclick = function() {
+    	rA.checked? (rst.innerHTML = sA.value.charAt(2)): (rst.innerHTML = sB.value.charAt(2))
+    }
+
+    btns[2].onclick = function() {
+    	rst.innerHTML = sA.value.concat(sB.value)
+    }
+
+    btns[3].onclick = function() {
+    	rst.innerHTML = sA.value.indexOf(sB.value);
+    }
+
+    btns[4].onclick = function() {
+    	rst.innerHTML = sB.value.lastIndexOf(sA.value);
+    }
+
+    btns[5].onclick = function() {
+    	rA.checked? (rst.innerHTML = sA.value.slice(nA.value,nB.value)): (rst.innerHTML = sB.value.slice(nA.value,nB.value))
+    }
+
+    btns[6].onclick = function() {
+    	rA.checked? (rst.innerHTML = sA.value.split(/\n/).length): (rst.innerHTML = sB.value.split(/\n/).length)
+    }
+
+    btns[7].onclick = function() {
+    	rA.checked? (rst.innerHTML = sA.value.substr(nA.value,nB.value)): (rst.innerHTML = sB.value.substr(nA.value,nB.value))
+    }
+
+    btns[8].onclick = function() {
+    	rA.checked? (rst.innerHTML = sA.value.toUpperCase()): (rst.innerHTML = sB.value.toUpperCase())
+    }
+
+    btns[9].onclick = function() {
+    	rA.checked? (rst.innerHTML = sA.value.toLowerCase()): (rst.innerHTML = sB.value.toLowerCase())
+    }
+
+    btns[10].onclick = function() {
+    	rA.checked? (rst.innerHTML = sA.value.replace(/\s/g,"")): (rst.innerHTML = sB.value.replace(/\s/g,""))
+    }
+
+    btns[11].onclick = function() {
+    	rA.checked? (sA.value = sB.value): (sB.value = sA.value)
+    }
+</script>
+</body>
+</html>
