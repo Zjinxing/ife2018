@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index1</title>
+</head>
+<body>
+<ul>
+    <li><a href="https://zjinxing.github.io/ife2018/%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%AD%A6%E9%99%A2/js%E9%83%A8%E5%88%86/day25To27/index1.html">index1</a></li>
+    <li><a href="https://zjinxing.github.io/ife2018/%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%AD%A6%E9%99%A2/js%E9%83%A8%E5%88%86/day25To27/index2.html">index2</a></li>
+    <li><a href="https://zjinxing.github.io/ife2018/%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%AD%A6%E9%99%A2/js%E9%83%A8%E5%88%86/day25To27/index3.html">index3</a></li>
+</ul>
+
+<script>
+    function Go() {
+        console.log("Go");
+    }
+
+    function GoSteps(n) {
+        if(arguments.length) {
+            if(!isNaN(n)) {
+                if(n >= 1) {
+                    n = Math.floor(n);
+                    while(n--) {
+                        Go();
+                    }
+                }
+            } else if(typeof n === "boolean") {
+                if(n) {
+                    Go();
+                }
+            } else if(isNaN(n) || n === null) {
+                return;
+            }
+        }
+        else {
+            Go();
+        }
+    }
+
+    GoSteps(10); // Go 10次
+    GoSteps(1); // Go 1次
+    GoSteps(); // Go 1次，认为缺少参数时，默认参数为1
+    GoSteps(0);  // 0次
+    GoSteps(-1);  // 0次
+    GoSteps(1.4);  // Go 1次
+    GoSteps(1.6);  // Go 1次
+    GoSteps(-1);  // 0次
+    GoSteps(true);  // Go 1次
+    GoSteps(false);  // 0次
+    GoSteps("Test");  // 0次
+    GoSteps(NaN);  // 0次
+    GoSteps(null);  // 0次
+</script>
+</body>
+</html>

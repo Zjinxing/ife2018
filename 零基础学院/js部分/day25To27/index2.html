@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index2</title>
+</head>
+<body>
+<p id="rst1"></p>
+<p id="rst2"></p>
+<ul>
+    <li><a href="https://zjinxing.github.io/ife2018/%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%AD%A6%E9%99%A2/js%E9%83%A8%E5%88%86/day25To27/index1.html">index1</a></li>
+    <li><a href="https://zjinxing.github.io/ife2018/%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%AD%A6%E9%99%A2/js%E9%83%A8%E5%88%86/day25To27/index2.html">index2</a></li>
+    <li><a href="https://zjinxing.github.io/ife2018/%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%AD%A6%E9%99%A2/js%E9%83%A8%E5%88%86/day25To27/index3.html">index3</a></li>
+</ul>
+
+<script>
+    let rst1 = document.querySelector("#rst1");
+    let rst2 = document.querySelector("#rst2");
+    let arr1 = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+    let arr2 = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+    //位数补齐函数
+    function aligning(time) {
+        if(time < 10) {
+            time = "0" + time;
+        }
+        return time;
+    }
+
+    //返回星期几的函数
+    function week(arr) {
+        let date = new Date();
+        let weekDay = date.getDay();
+        return arr[weekDay];
+    }
+
+    //返回时间的函数
+    function time() {
+        let date = new Date();
+        let hour = date.getHours();
+        let min = date.getMinutes();
+        let sec = date.getSeconds();
+
+        return aligning(hour) + ":" + aligning(min) + ":" + aligning(sec)
+    }
+
+    function time1() {
+        let date = new Date();
+        let hour = date.getHours();
+        let min = date.getMinutes();
+        let sec = date.getSeconds();
+
+        if(hour >= 12) {
+            return aligning(hour - 12) + ":" + aligning(min) + ":" + aligning(sec) + " pm"
+        }else {
+            return aligning(hour) + ":" + aligning(min) + ":" + aligning(sec) + " am"
+        }
+    }
+
+    //返回日期的函数
+    function showDate(x, y, z) {
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = date.getMonth() + 1;
+        let day = date.getDate();
+
+        return year + x + aligning(month) + y + aligning(day) + z;
+    }
+
+    function format(YY,DD,S) {
+        return YY + " " + DD + " " + S;
+    }
+
+    function result() {
+        rst1.innerHTML = format(showDate("年","月","日"), week(arr1), time());
+        setTimeout(result,20)
+    }
+    function result2() {
+        rst2.innerHTML = format(showDate("-","-",""), week(arr2), time1());
+        setTimeout(result2, 20)
+    }
+    result();
+    result2();
+</script>
+</body>
+</html>
