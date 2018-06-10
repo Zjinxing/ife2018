@@ -1,0 +1,37 @@
+input {
+    margin-left: 15px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td, th {
+    width: 80px;
+    height: 18px;
+    border: 1px solid #000;
+    text-align: center;
+}
+tr td:first-child{
+    background: #fff;
+}
+tr:not(:first-child):hover{
+    background: #ff98df;
+}
+#region-wrapper, #product-wrapper {
+    display: inline-block;
+    width: 300px;
+    height: 100px
+}
+h4{
+    text-align: center;
+}
+.chart{
+    font-size: 0;
+}
+#svg-wrapper, #canvas{
+    display: inline-block;
+    width: 50%;
+    max-width: 600px;
+    overflow: scroll;
+}
