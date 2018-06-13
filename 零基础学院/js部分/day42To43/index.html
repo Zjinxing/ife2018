@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>请打开控制台查看</p>
+
+<script>
+
+    function Restaurant(cash, seats, staffList) {
+        this.cash = cash;
+        this.seats = seats;
+        this.staffList = staffList;
+
+        this.hire = function (staff) {
+            this.staffList.push(staff);
+        };
+        this.fire = function (staff) {
+            for (let i = 0; i < this.staffList.length; i++) {
+                if (staff.id === this.staffList[i].id || staff.name === this.staffList[i].name) {
+                    this.staffList.splice(i, 1);
+                }
+            }
+        }
+    }
+
+    function Staff(id, name, salary) {
+        this.id = id;
+        this.name = name;
+        this.salary = salary;
+
+        this.finishWork = function () {
+            console.log("work is finished");
+        }
+    }
+
+    function Waiter(id, name, salary) {
+        Staff.call(this, id, name, salary);
+    }
+
+    Waiter.prototype = Object.create(Staff.prototype);
+    Waiter.prototype.constructor = Waiter;
+    Waiter.prototype.finishWork = function (task) {
+        if (Array.isArray(task)) {
+            console.log("the order is" + task)
+        } else {
+            console.log(task);
+        }
+    };
+
+    function Chef(id, name, salary) {
+        Staff.call(this, id, name, salary);
+    }
+
+    Chef.prototype = Object.create(Staff.prototype);
+    Chef.prototype.constructor = Chef;
+    Chef.prototype.finishWork = function (dishes) {
+        console.log(dishes + "is done!")
+    };
+
+    function customer() {
+        this.order = function (dishes) {
+            console.log("the dishes customer ordered is" + dishes);
+        };
+        this.eat = function () {
+            console.log("the dishes was eat up");
+        }
+    }
+
+    let ifeRestaurant = new Restaurant(1000000, 20, []);
+    let chef1 = new Chef("001", "Tony", 10000);
+    let chef2 = new Chef("002","Jack",12000);
+    ifeRestaurant.hire(chef1);
+    ifeRestaurant.hire(chef2);
+    console.log(ifeRestaurant.staffList);
+
+    ifeRestaurant.fire(chef2);
+    console.log(ifeRestaurant.staffList);
+</script>
+</body>
+</html>
