@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>请打开控制台查看</p>
+
+<script>
+    class Restaurant {
+        constructor(obj) {
+            this.cash = obj.cash;
+            this.seats = obj.seats;
+            this.staffList = obj.staffList;
+        }
+
+        hire(staff) {
+            this.staffList.push(staff)
+        }
+
+        fire(staff) {
+            let arr = [];
+            for (let i = 0; i < this.staffList.length; i++) {
+                if (staff.id !== this.staffList[i].id || staff.name !== this.staffList[i].name) {
+                    arr.push(this.staffList[i]);
+                }
+            }
+            this.staffList = arr;
+        }
+    }
+
+    class Staff {
+        constructor(id, name, salary) {
+            this.id = id;
+            this.name = name;
+            this.salary = salary;
+        }
+
+        finishWork() {
+            console.log("work is finished");
+        }
+    }
+
+    class Waiter extends Staff {
+        constructor(id, name, salary) {
+            super(id, name, salary);
+        }
+
+        finishWork(task) {
+            if (Array.isArray(task)) {
+                console.log("the order is" + task)
+            } else {
+                console.log(task);
+            }
+        }
+    }
+
+    class Cook extends Staff {
+        constructor(id, name, salary) {
+            super(id, name, salary);
+        }
+
+        finishWork(dishes) {
+            console.log(dishes + " is done!");
+        }
+    }
+
+    class Customers {
+        constructor() {
+        }
+
+        order(order) {
+            console.log("the customers ordered " + order);
+        }
+
+        eat() {
+            console.log("The food has been eaten up");
+        }
+    }
+
+    class Dishes {
+        constructor(name, cost, price) {
+            this.name = name;
+            this.cost = cost;
+            this.price = price;
+        }
+    }
+
+    let ifeRestaurant = new Restaurant({
+        cash: 1000000,
+        seats: 20,
+        staffList: []
+    });
+
+    let newCook = new Cook("001", "Tony", 10000);
+    ifeRestaurant.hire(newCook);
+
+    console.log(ifeRestaurant.staffList);
+
+    ifeRestaurant.fire(newCook);
+    console.log(ifeRestaurant.staffList);
+</script>
+</body>
+</html>

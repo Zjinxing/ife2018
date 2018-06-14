@@ -9,22 +9,24 @@
 
 <script>
 
-    function Restaurant(cash, seats, staffList) {
-        this.cash = cash;
-        this.seats = seats;
-        this.staffList = staffList;
+    function Restaurant(obj) {
+        this.cash = obj.cash;
+        this.seats = obj.seats;
+        this.staffList = obj.staff;
+    }
 
-        this.hire = function (staff) {
-            this.staffList.push(staff);
-        };
-        this.fire = function (staff) {
-            for (let i = 0; i < this.staffList.length; i++) {
-                if (staff.id === this.staffList[i].id || staff.name === this.staffList[i].name) {
-                    this.staffList.splice(i, 1);
-                }
+    Restaurant.prototype.hire = function (staff) {
+        this.staffList.push(staff);
+    };
+    Restaurant.prototype.fire = function (staff) {
+        let arr = [];
+        for (let i = 0; i < this.staffList.length; i++) {
+            if (staff.id !== this.staffList[i].id || staff.name !== this.staffList[i].name) {
+                arr.push(this.staffList[i]);
             }
         }
-    }
+        this.staffList = arr;
+    };
 
     function Staff(id, name, salary) {
         this.id = id;
@@ -69,14 +71,16 @@
         }
     }
 
-    let ifeRestaurant = new Restaurant(1000000, 20, []);
-    let chef1 = new Chef("001", "Tony", 10000);
-    let chef2 = new Chef("002","Jack",12000);
-    ifeRestaurant.hire(chef1);
-    ifeRestaurant.hire(chef2);
+    let ifeRestaurant = new Restaurant({
+        cash: 1000000,
+        seats: 20,
+        staff: []
+    });
+    let chef = new Chef("001", "Tony", 10000);
+    ifeRestaurant.hire(chef);
     console.log(ifeRestaurant.staffList);
 
-    ifeRestaurant.fire(chef2);
+    ifeRestaurant.fire(chef);
     console.log(ifeRestaurant.staffList);
 </script>
 </body>
