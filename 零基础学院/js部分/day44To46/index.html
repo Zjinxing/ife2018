@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>请打开控制台查看</p>
+
+<script>
+    function Restaurant(obj) {
+        this.cash = obj.cash;
+        this.seats = obj.seats;
+        this.staffList = obj.staff;
+    }
+
+    Restaurant.prototype.hire = function (staff) {
+        this.staffList.push(staff);
+    };
+    Restaurant.prototype.fire = function (staff) {
+        let arr = [];
+        for (let i = 0; i < this.staffList.length; i++) {
+            if (staff.id !== this.staffList[i].id || staff.name !== this.staffList[i].name) {
+                arr.push(this.staffList[i]);
+            }
+        }
+        this.staffList = arr;
+    };
+
+    let id = 1;
+
+    function Staff(name, salary) {
+        this.id = id++;
+        this.name = name;
+        this.salary = salary;
+    }
+
+    Staff.prototype.finishWork = function () {
+        console.log("work is finished!");
+    };
+
+    let singleCook = (function () {
+        let cook;
+
+        function Cook(name, salary) {
+            Staff.call(this, name, salary);
+        }
+
+        Cook.prototype = {
+            constructor: Cook,
+            finishWork: function (dishes) {
+                // 厨师做好菜并通知服务员上菜
+                console.log(`The ${dishes} is ready!`);
+                let _wt = singleWaiter.getWaiter("Lily", 8000);
+                _wt.finishWork(dishes);
+                _wt = null;
+            },
+            getOrder: function (dishes) {
+                // 厨师接收到菜单并完成任务
+                console.log(`received ${dishes} from waiter`);
+                this.finishWork(dishes)
+            }
+        };
+
+        return {
+            getCook: function (name, salary) {
+                if (!cook) {
+                    cook = new Cook(name, salary);
+                }
+                return cook;
+            }
+        }
+    })();
+
+    let singleWaiter = (function () {
+        let waiter;
+
+        function Waiter(name, salary) {
+            Staff.call(this, name, salary);
+
+        }
+
+        Waiter.prototype = {
+            finishWork: function (task) {
+                if (Array.isArray(task)) {
+                    // 如果task是数组，记录点菜，并将菜单传递给厨师，如果没有厨师就新建一个厨师
+                    console.log("the order is " + task[0].name);
+                    let _ck = singleCook.getCook("Tony", 10000);
+                    _ck.getOrder(task[0].name);
+                    _ck = null;
+                } else {
+                    console.log(`${task} is coming`);
+                }
+            }
+        };
+
+        return {
+            getWaiter: function (name, salary) {
+                if (!waiter) {
+                    waiter = new Waiter(name, salary)
+                }
+                return waiter;
+            }
+        }
+    })();
+
+    let customerQueue = [];
+
+    function Customer() {
+        this.order = function (dishes) {
+            console.log("the dishes customer ordered is " + dishes[0].name);
+            singleWaiter.getWaiter("Alice", 8000).finishWork(dishes);
+        };
+        this.eat = function () {
+            console.log("the dishes has been eat up");
+            customerQueue.push(new Customer());
+            nextCustomer = customerQueue.shift();
+        }
+    }
+
+    function Dishes(name, cost, price) {
+        this.name = name;
+        this.cost = cost;
+        this.price = price;
+    }
+
+    let dishes = [
+        new Dishes("麻辣小龙虾", 30, 58),
+        new Dishes("酸辣土豆丝", 8, 15),
+        new Dishes("肉末茄子", 12, 25),
+        new Dishes("水煮肉片", 18, 38)
+    ];
+
+
+    function getMenu() {
+        let menu = [];
+        for (let i = 0; i < dishes.length; i++) {
+            let obj = {};
+            obj.name = dishes[i].name;
+            obj.price = dishes[i].price;
+            menu.push(obj)
+        }
+        return menu;
+    }
+
+    let menu = getMenu();
+
+    // test
+    let cus = new Customer();
+    let i = Math.floor(Math.random() * menu.length); //产生一个随机数
+    cus.order(menu.splice(i, 1, menu[i])); // 从menu中取出第i项，然后再放回第i项，否则会影响menu
+    // console.log(menu);
+</script>
+</body>
+</html>
