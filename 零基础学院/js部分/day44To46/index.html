@@ -36,7 +36,7 @@
     }
 
     Staff.prototype.finishWork = function () {
-        console.log("work is finished!");
+        console.log("工作完成了");
     };
 
     let singleCook = (function () {
@@ -50,14 +50,14 @@
             constructor: Cook,
             finishWork: function (dishes) {
                 // 厨师做好菜并通知服务员上菜
-                console.log(`The ${dishes} is ready!`);
-                let _wt = singleWaiter.getWaiter("Lily", 8000);
+                console.log(`厨师：${dishes}做好了！`);
+                let _wt = singleWaiter.getWaiter("小王", 8000);
                 _wt.finishWork(dishes);
                 _wt = null;
             },
             getOrder: function (dishes) {
                 // 厨师接收到菜单并完成任务
-                console.log(`received ${dishes} from waiter`);
+                console.log(`厨师：${dishes}开始做了`);
                 this.finishWork(dishes)
             }
         };
@@ -84,12 +84,12 @@
             finishWork: function (task) {
                 if (Array.isArray(task)) {
                     // 如果task是数组，记录点菜，并将菜单传递给厨师，如果没有厨师就新建一个厨师
-                    console.log("the order is " + task[0].name);
-                    let _ck = singleCook.getCook("Tony", 10000);
+                    console.log("服务员：大厨，做一份" + task[0].name);
+                    let _ck = singleCook.getCook("老李", 10000);
                     _ck.getOrder(task[0].name);
                     _ck = null;
                 } else {
-                    console.log(`${task} is coming`);
+                    console.log(`您要的${task}来了`);
                 }
             }
         };
@@ -103,18 +103,22 @@
             }
         }
     })();
+    let cook = singleCook.getCook("老李", 10000);
+    let waiter = singleWaiter.getWaiter("小王",8000);
+    let restaurant = new Restaurant({cash: 100000, seats: 1, staff: []});
+    restaurant.hire(cook);
+    restaurant.hire(waiter);
 
-    let customerQueue = [];
+    let customerQueue = ["赵", "钱", "孙", "李"];
 
-    function Customer() {
+    function Customer(customer) {
         this.order = function (dishes) {
-            console.log("the dishes customer ordered is " + dishes[0].name);
-            singleWaiter.getWaiter("Alice", 8000).finishWork(dishes);
+            console.log(customer + "先生点的菜是" + dishes[0].name);
+            singleWaiter.getWaiter("小王", 8000).finishWork(dishes);
         };
         this.eat = function () {
-            console.log("the dishes has been eat up");
-            customerQueue.push(new Customer());
-            nextCustomer = customerQueue.shift();
+            console.log("顾客吃完离开了");
+            console.log("----------------------");
         }
     }
 
@@ -146,10 +150,15 @@
     let menu = getMenu();
 
     // test
-    let cus = new Customer();
-    let i = Math.floor(Math.random() * menu.length); //产生一个随机数
-    cus.order(menu.splice(i, 1, menu[i])); // 从menu中取出第i项，然后再放回第i项，否则会影响menu
-    // console.log(menu);
+    for (let i = 0, len = customerQueue.length; i < len; i++) {
+        let cus = new Customer(customerQueue.shift());
+        let i = Math.floor(Math.random() * menu.length); //产生一个随机数
+        cus.order(menu.splice(i, 1, menu[i])); // 从menu中取出第i项，然后再放回第i项，否则会影响menu
+        cus.eat();
+        if (!customerQueue.length) {
+            console.log("没有顾客了，可以休息下了")
+        }
+    }
 </script>
 </body>
 </html>
