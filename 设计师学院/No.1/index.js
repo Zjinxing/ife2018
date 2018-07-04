@@ -1,9 +1,10 @@
-let btn = document.querySelector('#btn');
-let white = document.querySelector('#white');
-let list = white.classList;
-let text = document.querySelector('#text');
-function hide(){
-    text.classList.toggle('color');
+let oBtn = document.querySelector('#btn');
+let inner = document.querySelector('#white');
+let list = inner.classList;
+let txt = document.querySelector('#text');
+
+function hide() {
+    txt.classList.toggle('color');
     list.toggle('hidden');
 }
-btn.onclick = hide;
+oBtn.onclick = hide;
