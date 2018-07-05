@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul {
+      position: absolute;
+      display: flex;
+      width: 800px;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 0;
+      list-style: none;
+      z-index: 100;
+    }
+
+    ul li {
+      display: inline-block;
+      flex: 1;
+      width: 150px;
+      height: 100px;
+    }
+
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+    .wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: #000;
+    }
+
+    .pic img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .pic img:first-child {
+      z-index: 10;
+    }
+
+    .animation0 {
+      animation: move1 0.5s ease-out;
+      -moz-animation: move1 0.5s ease-out;
+      -webkit-animation: move1 0.5s ease-out;
+      -o-animation: move1 0.5s ease-out;
+    }
+
+    .animation1 {
+      animation: move2 0.5s ease-out;
+      -moz-animation: move2 0.5s ease-out;
+      -webkit-animation: move2 0.5s ease-out;
+      -o-animation: move2 0.5s ease-out;
+    }
+
+    .animation2 {
+      animation: size1 1.0s ease-in;
+      -moz-animation: size1 1.0s ease-in;
+      -webkit-animation: size1 1.0s ease-in;
+      -webkit-animation: size1 1.0s ease-in;
+    }
+
+    .animation3 {
+      animation: size2 1.0s ease-out;
+      -moz-animation: size2 1.0s ease-out;
+      -webkit-animation: size2 1.0s ease-out;
+      -webkit-animation: size2 1.0s ease-out;
+    }
+
+    .animation4 {
+      animation: rotateSize 0.7s ease-in-out;
+      -moz-animation: rotateSize 0.7s ease-in-out;
+      -webkit-animation: rotateSize 0.7s ease-in-out;
+      -o-animation: rotateSize 0.7s ease-in-out;
+    }
+
+    @keyframes move1 {
+      0% {
+        left: -500px;
+      }
+      100% {
+        left: 0;
+      }
+    }
+
+    @keyframes move2 {
+      0% {
+        top: 350px;
+      }
+      100% {
+        top: 0;
+      }
+    }
+
+    @keyframes size1 {
+      0% {
+        transform: scale(0.1)
+      }
+      100% {
+        transform: scale(1.0)
+      }
+    }
+
+    @keyframes size2 {
+      0% {
+        transform: scale(2.0)
+      }
+      100% {
+        transform: scale(1.0)
+      }
+    }
+
+    @keyframes rotateSize {
+      0% {
+        transform: rotate(-360deg) scale(0.1);
+      }
+      100% {
+        transform: rotate(0) scale(1.0)
+      }
+    }
+
+    a img {
+      width: 150px;
+      height: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="pic">
+      <img src="img/pic1.jpg" alt="">
+      <img src="img/pic2.jpg" alt="">
+      <img src="img/pic3.jpg" alt="">
+      <img src="img/pic4.jpg" alt="">
+      <img src="img/pic5.jpg" alt="">
+    </div>
+    <div class="pic_thumb">
+      <ul>
+        <li>
+          <a href="#">
+            <img src="img/pic1_thumb.jpg" alt="">
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <img src="img/pic2_thumb.jpg" alt="">
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <img src="img/pic3_thumb.jpg" alt="">
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <img src="img/pic4_thumb.jpg" alt="">
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <img src="img/pic5_thumb.jpg" alt="">
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    let imgs = document.querySelectorAll('.pic img');
+    let a = document.querySelectorAll('a');
+
+    (function () {
+      for (let i = 0; i < a.length; i++) {
+        a[i].onclick = function () {
+          for (let j = 0; j < imgs.length; j++) {
+            if (imgs[j].style.zIndex) {
+              imgs[j].style.zIndex -= 1;
+            }
+            imgs[j].classList.remove('animation' + j);
+          }
+          imgs[i].style.zIndex = 10;
+          imgs[i].classList.add('animation' + i);
+        }
+      }
+    })()
+  </script>
+</body>
+
+</html>
