@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>把 AE 动画转换成 Web 原生动画</title>
+  <script src="lottie.min.js"></script>
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100;
+      background: #000;
+    }
+
+    .animation {
+      width: 50%;
+      height: 50%;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="animation" id="animation"></div>
+
+  <script>
+    lottie.loadAnimation({
+      container: document.querySelector("#animation"),
+      render: "canvas",
+      loop: true,
+      autoplay: true,
+      path: "data.json"
+    });
+  </script>
+</body>
+
+</html>
