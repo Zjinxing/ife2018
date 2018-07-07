@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>九九乘法表</title>
+    <style>
+        table{
+            border-collapse: collapse;
+        }
+        td{
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+<h2>九九乘法表</h2>
+<script>
+    document.write('<table>');
+    for (let i = 1; i <= 9; i++) {
+        document.write('<tr>');
+        for (let j = 1; j <= i; j++) {
+            document.write('<td>' + j + '*' + i + '=' + (i*j) + '</td>')
+        }
+        document.write('</tr>')
+    }
+    document.write('</table>')
+</script>
+</body>
+</html>
